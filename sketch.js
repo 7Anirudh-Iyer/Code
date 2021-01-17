@@ -137,37 +137,25 @@ function draw(){
         })
     }
 
-    if(b===undefined&&gS===1){
+    if(gS===1&&b===undefined){
         db.ref('players').on('value',function(data){
-            b=data.val()
-        })
-    }
+           b=data.val()
+        }) 
+     }
 
-    if(gS==1){
-        background(0)
-        write.hide()
-        sub.hide()
-
-        p1.visible=true
-        p2.visible=true
-        p3.visible=true
-        p4.visible=true
-        p5.visible=true
-        p6.visible=true
-        p7.visible=true
-
-        let index = 0
+    if(gS===1){
+        var index = 0
 
         for(var i in b){
-           ar[index].x=b[i].x
-           ar[index].y=b[i].y
+            ar[index].x=b[i].x
+            ar[index].y=b[i].y
 
-           if(blah-1==index){
-               camera.position.y=ar[blah-1].y
-               camera.position.y=ar[blah-1].x
-           }
+            if(blah-1===index){
+                camera.position.y=ar[blah-1].y
+                camera.position.x=ar[blah-1].x
+            }
 
-           index++
+            index++
         }
 
         if(keyDown('up')){
@@ -197,8 +185,7 @@ function draw(){
                 x: ar[blah-1].x
             })
         }
-
-    }
+    } 
     
     drawSprites();
 }
