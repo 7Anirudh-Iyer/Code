@@ -5,7 +5,6 @@ var s
 var db
 var rese
 var b
-var varia
 var blah = 0
 var bg,bg1
 ar = []
@@ -115,7 +114,7 @@ function draw(){
         t.html('Welcome '+b+'. We are waiting for other players.')
     
         pC+=1
-        index=pC
+        blah=pC
     
         db.ref('/').update({
             pC: pC
@@ -157,32 +156,45 @@ function draw(){
         p6.visible=true
         p7.visible=true
 
-        let x = w/4
-        let blah = 0
+        let index = 0
 
         for(var i in b){
-           ar[blah].x=x
-           x+=w/10
-           ar[blah].y=varia[i].y
+           ar[index].x=b[i].x
+           ar[index].y=b[i].y
 
-           if(index-1==blah){
-               camera.position.y=ar[index-1].y
+           if(blah-1==index){
+               camera.position.y=ar[blah-1].y
+               camera.position.y=ar[blah-1].x
            }
 
-           blah++
+           index++
         }
 
         if(keyDown('up')){
-            ar[blah-1].y-=20
-            db.ref('players/player'+index).update({
-                y: ar[index-1].y
+            ar[blah-1].y-=10
+            db.ref('players/player'+blah).update({
+                y: ar[blah-1].y
             })
         }
 
         if(keyDown('down')){
-            ar[blah-1].y+=20
-            db.ref('players/players'+index).update({
-                y: ar[index-1].y
+            ar[blah-1].y+=10
+            db.ref('players/player'+blah).update({
+                y: ar[blah-1].y
+            })
+        }
+
+        if(keyDown('left')){
+            ar[blah-1].x-=10
+            db.ref('players/player'+blah).update({
+                x: ar[blah-1].x
+            })
+        }
+
+        if(keyDown('right')){
+            ar[blah-1].x+=10
+            db.ref('players/player'+blah).update({
+                x: ar[blah-1].x
             })
         }
 
